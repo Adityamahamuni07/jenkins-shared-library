@@ -1,5 +1,3 @@
-
-
 @Library('my-shared-library') _
 
 pipeline {
@@ -18,6 +16,12 @@ pipeline {
         stage('Maven Build') {
             steps {
                 mavenBuild()
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                dockerBuild('aditya9023/jenkins-maven-demo', '23')
             }
         }
     }
