@@ -1,3 +1,5 @@
+
+
 @Library('my-shared-library') _
 
 pipeline {
@@ -5,21 +7,17 @@ pipeline {
 
     stages {
 
-        stage('Welcome') {
+        stage('Checkout') {
             steps {
-                hello()
+                git branch: 'main',
+                    url: 'https://github.com/Adityamahamuni07/jenkins-shared-library.git',
+                    credentialsId: 'github-token'
             }
         }
 
-        stage('Build') {
+        stage('Maven Build') {
             steps {
-                echo 'Building application...'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Testing application...'
+                mavenBuild()
             }
         }
     }
